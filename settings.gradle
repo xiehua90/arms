@@ -1,2 +1,4 @@
-rootProject.name='arms'
+rootProject.name='Arms'
 include ':app'
+include ':sdk'
+include ':arms'

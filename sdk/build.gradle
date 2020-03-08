@@ -1,17 +1,17 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion build_versions.compile_sdk
     buildToolsVersion build_versions.build_tools
 
     defaultConfig {
-        applicationId "com.xh.arms"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
@@ -20,20 +20,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation deps.app_compat
-    implementation deps.material
-    implementation deps.constraint_layout
-    implementation deps.navigation.fragment
-    implementation deps.navigation.ui
-
-
     testImplementation deps.junit
     androidTestImplementation deps.atsl.ext_junit
     androidTestImplementation deps.espresso.core
-    implementation project(path: ':sdk')
+
+    api deps.dagger.runtime
+    annotationProcessor deps.dagger.compiler
+    api deps.dagger.android
+    api deps.dagger.android_support
+    annotationProcessor deps.dagger.android_support_compiler
+
 }

@@ -1,13 +1,13 @@
-package com.xh.arms.di;
+package com.xh.sdk.di;
 
 
 
-import com.xh.arms.BaseApplication;
+import com.xh.sdk.BaseApplication;
 
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 
-@Component(modules = {AndroidInjectionModule.class, ActivityModule.class})
+@Component(modules = {AndroidInjectionModule.class})
 public interface AppComponent {
     void inject(BaseApplication application);
 }
